@@ -53,6 +53,23 @@ public class WordService {
         }
 
     }
+    public Word creatWord (String temp) throws FileNotFoundException {
+        Word word = new Word();
+        word.setWord(temp);
+        word.setFirst_char(temp.charAt(0));
+        word.setLast_char(temp.charAt(temp.length() - 1));
+        boolean wordExist = scanWord(temp);
+        if(wordExist == true){
+
+            return word;
+        } else {
+            return null;
+        }
+
+    }
+
+
+
 
     public List<Word> list(){
         List<Word> temp = wordRepositorie.findAll();
