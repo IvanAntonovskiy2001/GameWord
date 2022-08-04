@@ -51,11 +51,4 @@ public class WordContpoller {
         }
     }
 
-    @DeleteMapping("/delete")
-    public String gameOver(){
-        Word word = stack.peek();
-        wordService.deletePlay();
-        stack.clear();
-        return "won players hwo word " + word.getWord();
-    }
 }

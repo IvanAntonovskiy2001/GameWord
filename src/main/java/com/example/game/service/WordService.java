@@ -82,12 +82,6 @@ public class WordService {
     public Word getWord (String str){
         return wordRepositorie.findByWord(str);
     }
-    public void deleteWord(String str){
-        Word word = getWord(str);
-        wordRepositorie.deleteById(word.getId());
-    }
-    public void deletePlay(){
-        wordRepositorie.deleteAll();
-    }
+
 
 }

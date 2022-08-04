@@ -183,7 +183,4 @@ public class GameService {
         gameRepository.save(game);
     }
 
-
-    public void deleteGame(int id){gameRepository.deleteById(gameRepository.findByIdPlay(id).getId());}
-    public void deleteGameALL(){gameRepository.deleteAll();}
 }

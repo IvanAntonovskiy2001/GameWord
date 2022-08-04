@@ -79,15 +79,5 @@ public class GameController {
 
     }
 
-    @DeleteMapping("/{id}")
-    public String delete(@PathVariable("id") int id){
-        gameService.deleteGame(id);
-        return "ok";
-    }
-    @DeleteMapping("/")
-    public String deleteALL(){
-        gameService.deleteGameALL();
-        return "ok";
-    }
 
 }
