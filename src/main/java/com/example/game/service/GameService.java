@@ -111,8 +111,8 @@ public class GameService {
 
     public Word play(String word , int id) throws FileNotFoundException {
         Game game = gameRepository.findByIdPlay(id);
-        if(!game.getStop()) {
-            Word word1 = wordService.creatWord(word);
+        Word word1 = wordService.creatWord(word);
+        if(!game.getStop() && word1 != null) {
             List<Word> words;
             if (game.getWord_id() == null) {
                 words = new ArrayList<>();

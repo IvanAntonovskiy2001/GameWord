@@ -26,14 +26,18 @@ public class GameController {
     public boolean ok (String word , int id) throws FileNotFoundException {
         List<Word> ww= gameService.words(id);
         Word word1 = wordService.creatWord(word);
-        String str = word1.getWord();
-        boolean temp = true;
-        for (int i =0; i < ww.size();i++){
-            if (ww.get(i).getWord().equals(str)){
-                temp = false;
+        if(word1 !=null) {
+            String str = word1.getWord();
+            boolean temp = true;
+            for (int i = 0; i < ww.size(); i++) {
+                if (ww.get(i).getWord().equals(str)) {
+                    temp = false;
+                }
             }
+            return temp;
+        } else {
+            return true;
         }
-        return temp;
     }
 
     @PostMapping("/new/{name}")
@@ -67,14 +71,12 @@ public class GameController {
             } else {
                 return gameService.endGame(id);
             }
-        } else if(ok(string,id) == false){
-            Word word1 = ww.get(ww.size()-1);
+        } else if(!ok(string, id) && ww.get(ww.size()-1) != null ){
+            return "this word exist \n" + "написать слово на букву <<" + ww.get(ww.size()-1).getLast_char() + ">>";
+        } else  {
 
-            return "this word exist \n" + "написать слово на букву <<" + word1.getLast_char() + ">>";
-        } else {
-            Word word1 = ww.get(ww.size()-1);
 
-            return "no word \n" + "написать слово на букву <<" + word1.getLast_char() + ">>";
+            return "no word \n" + "написать слово на букву <<" + ww.get(ww.size()-1).getLast_char() + ">>";
         }
 
     }
