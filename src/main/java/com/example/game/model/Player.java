@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "player")
@@ -23,7 +24,11 @@ public class Player {
     @Column(name = "win")
     private int win;
     @Column(name = "procentwin")
-    private double procentwin;
+    private int procentwin;
+
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "game_id")
+    private List<Game> game_id;
 
 
 }

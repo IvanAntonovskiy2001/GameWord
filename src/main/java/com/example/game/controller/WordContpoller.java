@@ -25,12 +25,12 @@ public class WordContpoller {
     }
     @PostMapping("/{string}")
     public String play (@PathVariable("string") String string) throws FileNotFoundException {
-        if(stack.empty() == true && wordService.scanWord(string) == true){
+        if(stack.empty() && wordService.scanWord(string)){
             wordService.createWord(string);
             Word word = wordService.getWord(string);
             stack.push(word);
             return "написать слово на букву <<" + word.getLast_char() + ">>";
-        } else if(wordService.scanWord(string) == true) {
+        } else if(wordService.scanWord(string)) {
             wordService.createWord(string);
             Word word = wordService.getWord(string);
             Word word1 = stack.peek();

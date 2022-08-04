@@ -20,6 +20,7 @@ import java.util.Stack;
 @Data
 public class WordService {
     private final WordRepositorie wordRepositorie;
+    private final PlayerService playerService;
 
 
     public boolean scanWord (String string) throws FileNotFoundException {
@@ -32,20 +33,20 @@ public class WordService {
                 ch++;
             }
         }
-        if (ch == 1){
-            return true;
-        } else {
-            return false;
-        }
+        return ch == 1;
     }
 
     public boolean createWord (String temp) throws FileNotFoundException {
         Word word = new Word();
         word.setWord(temp);
         word.setFirst_char(temp.charAt(0));
-        word.setLast_char(temp.charAt(temp.length() - 1));
+        if(temp.charAt(temp.length() - 1) != 'ы' && temp.charAt(temp.length() - 1)!='ь'&& temp.charAt(temp.length() - 1)!='ъ') {
+            word.setLast_char(temp.charAt(temp.length() - 1));
+        } else {
+            word.setLast_char(temp.charAt(temp.length() - 2));
+        }
         boolean wordExist = scanWord(temp);
-        if(wordExist == true){
+        if(wordExist){
             wordRepositorie.save(word);
             return true;
         } else {
@@ -57,10 +58,13 @@ public class WordService {
         Word word = new Word();
         word.setWord(temp);
         word.setFirst_char(temp.charAt(0));
-        word.setLast_char(temp.charAt(temp.length() - 1));
+        if(temp.charAt(temp.length() - 1) != 'ы' && temp.charAt(temp.length() - 1)!='ь'&& temp.charAt(temp.length() - 1)!='ъ') {
+            word.setLast_char(temp.charAt(temp.length() - 1));
+        } else {
+            word.setLast_char(temp.charAt(temp.length() - 2));
+        }
         boolean wordExist = scanWord(temp);
-        if(wordExist == true){
-
+        if(wordExist){
             return word;
         } else {
             return null;

@@ -27,13 +27,17 @@ public class Game {
     private int countword;
     @Column(name = "looser")
     private String looser;
-
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinColumn(name = "player_id")
-    private List<Player> player_id;
+    @Column(name = "stop")
+    private Boolean stop = false;
 
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "word_id")
     private List<Word> word_id;
+
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "pl_id")
+    private List<Pl> pl_id;
+
+
 
 }

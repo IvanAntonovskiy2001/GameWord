@@ -1,12 +1,14 @@
 package com.example.game.service;
 
 import com.example.game.model.Player;
+import com.example.game.model.Word;
 import com.example.game.repositorie.PlayerRepository;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 @Service
@@ -16,13 +18,16 @@ import java.util.List;
 public class PlayerService {
     private final PlayerRepository playerRepository;
 
-    private double procent (int win , int games){
+
+    public int procent (int win , int games){
         if(games != 0){
-            return win/games;
+            return (int) Math.round((double)win/games  * 100);
         } else {
             return 0;
         }
     }
+
+
 
     public void createPlayer (String name){
         Player player = new Player();
@@ -45,11 +50,7 @@ public class PlayerService {
     }
     public boolean existsPlayer(String name){
         Player player = playerRepository.findByName(name);
-        if(player == null){
-            return false;
-        } else {
-            return true;
-        }
+        return player != null;
     }
     public List<Player> list(){
         List<Player> players = playerRepository.findAll();

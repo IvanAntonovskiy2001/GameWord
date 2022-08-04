@@ -21,7 +21,7 @@ public class PlayerController {
     private final PlayerService playerService;
     @PostMapping("/create-player/{name}")
     public String create(@PathVariable("name") String name){
-        if(playerService.existsPlayer(name) == false){
+        if(!playerService.existsPlayer(name)){
             playerService.createPlayer(name);
             return "player create";
         } else {
