@@ -58,7 +58,7 @@ public class WordService {
         Word word = new Word();
         word.setWord(temp);
         word.setFirst_char(temp.charAt(0));
-        if(temp.charAt(temp.length() - 1) != 'ы' && temp.charAt(temp.length() - 1)!='ь'&& temp.charAt(temp.length() - 1)!='ъ') {
+        if(temp.charAt(temp.length() - 1) != 'ы' && temp.charAt(temp.length() - 1)!='ь'&& temp.charAt(temp.length() - 1)!='ъ' && temp.charAt(temp.length() - 1)!='й') {
             word.setLast_char(temp.charAt(temp.length() - 1));
         } else {
             word.setLast_char(temp.charAt(temp.length() - 2));
